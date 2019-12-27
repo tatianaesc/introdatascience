@@ -88,7 +88,8 @@ for(i in 1:9) {
 # 4. Modelagem e Inferência
 
 # a) Escolha de procedimentos e métricas de avaliação
-configTreino <- trainControl(method="repeatedcv", number=10, repeats=3) # validação cruzada 10-fold com 3 repetições
+# validação cruzada 10-fold com 3 repetições
+configTreino <- trainControl(method="repeatedcv", number=10, repeats=3) 
 metrica <- "Accuracy" # definição da métrica de avaliação
 
 # b) Criação de Algoritmos
@@ -178,7 +179,7 @@ conjValidacaoX <- predict(parametrosPreProcessamento, conjValidacao[,1:9]) # tra
 
 # b) Predições no conjunto de teste (validação final)
 predicoes <- knn3Train(x, conjValidacaoX, datasetSemMissing$Class, k=9, prob=FALSE) # predições
-confusionMatrix(predicoes, conjValidacao$Class) # matriz de confusão
+confusionMatrix(as.factor(predicoes), conjValidacao$Class) # matriz de confusão
 
 # c) Salvamento do modelo para uso posterior
 
