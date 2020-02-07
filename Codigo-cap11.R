@@ -14,10 +14,10 @@ data(BreastCancer)
 
 # c) Divisão do dataset em conjunto de treino e teste (validação final)
 # separação do dataset em 80% para treinamento (usado para treinar e testar os modelos) 
-# e 20% para validação final do modelo
-indiceValidacao <- createDataPartition(BreastCancer$Class, p=0.80, list=FALSE)
-conjValidacao <- BreastCancer[-indiceValidacao,] # conjunto de validação
-dataset <- BreastCancer[indiceValidacao,] # conjunto de treinamento
+# e 20% para teste (validação final) do modelo
+indiceTeste <- createDataPartition(BreastCancer$Class, p=0.80, list=FALSE)
+conjTeste <- BreastCancer[-indiceTeste,] # conjunto de teste
+dataset <- BreastCancer[indiceTeste,] # conjunto de treinamento
 
 
 # 2. Análise exploratória de dados
@@ -169,17 +169,17 @@ parametrosPreProcessamento <- preProcess(x, method=c("BoxCox"))
 x <- predict(parametrosPreProcessamento, x)
 
 # Preparação do conjunto de teste (para validação final)
-conjValidacao <- conjValidacao[,-1] # remoção do atributo Id
-conjValidacao <- conjValidacao[complete.cases(conjValidacao),] # remoção dos valores faltantes
+conjTeste <- conjTeste[,-1] # remoção do atributo Id
+conjTeste <- conjTeste[complete.cases(conjTeste),] # remoção dos valores faltantes
 
 for(i in 1:9) { # conversão dos valores de entrada para numéricos
-  conjValidacao[,i] <- as.numeric(as.character(conjValidacao[,i]))
+  conjTeste[,i] <- as.numeric(as.character(conjTeste[,i]))
 }
-conjValidacaoX <- predict(parametrosPreProcessamento, conjValidacao[,1:9]) # transformação de dados
+conjTesteX <- predict(parametrosPreProcessamento, conjTeste[,1:9]) # transformação de dados
 
 # b) Predições no conjunto de teste (validação final)
-predicoes <- knn3Train(x, conjValidacaoX, datasetSemMissing$Class, k=9, prob=FALSE) # predições
-confusionMatrix(as.factor(predicoes), conjValidacao$Class) # matriz de confusão
+predicoes <- knn3Train(x, conjTesteX, datasetSemMissing$Class, k=9, prob=FALSE) # predições
+confusionMatrix(as.factor(predicoes), conjTeste$Class) # matriz de confusão
 
 # c) Salvamento do modelo para uso posterior
 
