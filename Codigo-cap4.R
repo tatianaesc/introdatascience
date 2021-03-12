@@ -52,10 +52,10 @@ corrplot(correlations, method="circle")
 
 
 # cria um gráfico de dispersão para cada um dos pares de atributos
-pairs(dados)
+pairs(dados[1:4]) 
 
 # colore o gráfico de dispersão por classes
-pairs(species~., data=dados, col=dados$species)
+pairs(dados[1:4], pch=21, bg=c("red", "green3", "blue")[iris$Species])
 
 # instala e carrega o pacote 
 install.packages("caret")
