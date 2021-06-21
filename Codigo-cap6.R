@@ -4,16 +4,16 @@
 
 # instala o pacote mclust
 install.packages("mclust")
->
+
 # carrega a base de dados banknote
 data('banknote', package='mclust') 
 
 # verifica o número de linhas do dataset
 numLinhas = nrow(banknote)
->
+
 # sorteia 150 exemplos dentre todos os exemplos do dataset
 base.treino <- sample(1:numLinhas, 150, FALSE)
->
+
 # exibe as 5 primeiras linhas sorteadas
 head(base.treino)
 
@@ -22,11 +22,11 @@ install.packages("C50")
 
 # referencia o pacote C50
 library(C50)
->
+
 # constrói o modelo usando a variável Status como variável de classe
 # o argumento ~. diz que todos os atributos devem ser utilizados
 modeloC50 <- C5.0(Status ~., data = banknote[base.treino,])
->
+
 # plota o gráfico da árvore construída
 plot(modeloC50)
 
