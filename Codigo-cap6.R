@@ -114,40 +114,28 @@ set.seed(2016)
 numLinhas = nrow(atributos)
 baseTreino <- sample(1:numLinhas, 89, replace = FALSE)
 
-install.packages("knnGarden")
-library("knnGarden")
+install.packages("class")
+library("class")
 
-modeloKNN <- knnVCN(atributos[baseTreino,],
-                    wine$Cultivar[baseTreino],
-                    atributos[-baseTreino,],
-                    K = 2,
-                    method = "canberra")
+modeloKNN <- knn(train=atributos[baseTreino,], test=atributos[-baseTreino,], cl=wine$Cultivar[baseTreino], k=3)
                     
-matrizConf <- table(modeloKNN$TstXIBelong, wine$Cultivar[-baseTreino])
+matrizConf <- table(modeloKNN, wine$Cultivar[-baseTreino])
 print(matrizConf)
 
 accTeste <- (matrizConf[1,1] + matrizConf[2,2] + matrizConf[3,3]) / (matrizConf[1,1] + matrizConf[1,2] + matrizConf[1,3] + matrizConf[2,1] + matrizConf[2,2] + matrizConf[2,3] + matrizConf[3,1] + matrizConf[3,2] + matrizConf[3,3]) * 100
 print(round(accTeste,2))
 
-modeloKNN <- knnVCN(atributos[baseTreino,],
-                    wine$Cultivar[baseTreino],
-                    atributos[-baseTreino,],
-                    K = 2,
-                    method = "euclidean")
+modeloKNN <- knn(train=atributos[baseTreino,], test=atributos[-baseTreino,], cl=wine$Cultivar[baseTreino], k=5)
 
-matrizConf <- table(modeloKNN$TstXIBelong, wine$Cultivar[-baseTreino])
+matrizConf <- table(modeloKNN, wine$Cultivar[-baseTreino])
 print(matrizConf)
 
 accTeste <- (matrizConf[1,1] + matrizConf[2,2] + matrizConf[3,3]) / (matrizConf[1,1] + matrizConf[1,2] + matrizConf[1,3] + matrizConf[2,1] + matrizConf[2,2] + matrizConf[2,3] + matrizConf[3,1] + matrizConf[3,2] + matrizConf[3,3]) * 100
 print(round(accTeste,2))
 
-modeloKNN <- knnVCN(atributos[baseTreino,],
-                    wine$Cultivar[baseTreino],
-                    atributos[-baseTreino,],
-                    K = 3,
-                    method = "euclidean")
+modeloKNN <- knn(train=atributos[baseTreino,], test=atributos[-baseTreino,], cl=wine$Cultivar[baseTreino], k=7)
                     
-matrizConf <- table(modeloKNN$TstXIBelong, wine$Cultivar[-baseTreino])
+matrizConf <- table(modeloKNN, wine$Cultivar[-baseTreino])
 print(matrizConf)
 
 accTeste <- (matrizConf[1,1] + matrizConf[2,2] + matrizConf[3,3]) / (matrizConf[1,1] + matrizConf[1,2] + matrizConf[1,3] + matrizConf[2,1] + matrizConf[2,2] + matrizConf[2,3] + matrizConf[3,1] + matrizConf[3,2] + matrizConf[3,3]) * 100
