@@ -144,6 +144,7 @@ print(round(accTeste,2))
 ## Naïve Bayes (Bayes Ingênuo)
 
 tabela = read.table("BD_aulaclass.csv", sep = ";", dec = ",", header = TRUE)
+# Outra opção para leitura: tabela <- read.csv("https://raw.githubusercontent.com/tatianaesc/introdatascience/master/BD_aulaclass.csv", sep = ";", dec = ",", header = TRUE)
 
 summary(tabela)
 
@@ -167,16 +168,14 @@ head(round(probsTeste,3),4)
 classesTeste <- predict(modeloNB, x[-baseTreino,], type = "class")
 head(classesTeste)
 
+matrizConf <- table(classesTeste, y[-baseTreino])
+print(matrizConf)
+
+accTeste <- (matrizConf[1,1] + matrizConf[2,2]) / (matrizConf[1,1] + matrizConf[1,2] + matrizConf[2,1] + matrizConf[2,2]) * 100
+print(round(accTeste,2))
+
 install.packages("caret")
 library("caret")
-
-resultado <- confusionMatrix(classesTeste, y[-baseTreino])
-
-# exibe a matriz de confusão
-resultado$table
-
-# exibe a acurácia
-resultado$overall[1]
 
 particoes <- createFolds(tabela$ADIMPLENTE, k=3)
 
