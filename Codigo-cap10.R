@@ -23,7 +23,7 @@ summary(ruleset)
 
 inspect(ruleset)
 
-ruleset = sort(ruleset, by = c("confidence", "support", "lhs.support")) 
+ruleset = sort(ruleset, by = c("confidence", "support", "coverage")) 
 inspect(ruleset)
 
 tabela = read.table("ExRealAssoc.csv", sep = ";", dec = ",", header = T)
