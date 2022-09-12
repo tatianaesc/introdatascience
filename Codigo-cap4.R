@@ -62,7 +62,7 @@ install.packages("caret")
 library(caret)
 # cria um gráfico de densidade para cada atributo, separado por classe
 x <- dados[,1:4]
-y <- dados[,5]
+y <- iris$Species
 escalas <- list(x=list(relation="free"), y=list(relation="free"))
 featurePlot(x=x, y=y, plot="density", scales=escalas)
 
