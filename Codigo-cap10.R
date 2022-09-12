@@ -63,7 +63,7 @@ param = list(supp = 0.9, conf = 1, minlen = 2, maxlen = 3, ext = TRUE)
 ruleset = apriori(tabitens, parameter = param)
 summary(ruleset)
 
-ruleset = sort(ruleset, by = c("confidence", "support", "lhs.support")) 
+ruleset = sort(ruleset, by = c("confidence", "support", "coverage")) 
 inspect(ruleset)
 
 inspect(head(sort(ruleset),10))
