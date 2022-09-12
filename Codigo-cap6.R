@@ -240,14 +240,14 @@ print(modeloSVM)
 
 classesTeste <- predict(modeloSVM, x[-baseTreino,], type="response") 
 
- library("caret")
+library("caret")
 
 resultado <- confusionMatrix(classesTeste, y[-baseTreino])
 resultado$table
 
 resultado$overall[1]
 
- modeloSVM <- ksvm(y[baseTreino]~., data=x[baseTreino,], kernel="polydot")
+modeloSVM <- ksvm(y[baseTreino]~., data=x[baseTreino,], kernel="polydot")
 print(modeloSVM) 
 
 classesTeste <- predict(modeloSVM, x[-baseTreino,], type="response") 
