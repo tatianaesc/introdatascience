@@ -224,7 +224,7 @@ summary(tabela)
 
 x <- tabela
 x$ADIMPLENTE <- NULL
-y <- tabela$ADIMPLENTE
+y <- as.factor(tabela$ADIMPLENTE)
 
 set.seed(2018)
 N = nrow(x)
