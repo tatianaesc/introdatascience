@@ -4,7 +4,7 @@
 
 # Lê de um arquivo ou URL e armazena o resultado em um novo data frame dados
 dados <- read.table(
-  'https://raw.githubusercontent.com/uiuc-cse/data-fa14/gh-pages/data/iris.csv',
+  'https://raw.githubusercontent.com/tatianaesc/datascience/main/iris.csv',
   sep=',', header=T
 )
 
