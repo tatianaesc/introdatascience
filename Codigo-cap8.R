@@ -208,12 +208,12 @@ predictionsTst <- ifelse(probabilitiesTst > 0.5,'pos','neg')
 library("caret")
 
 # Resultados Treino
-resultadoTr <- caret::confusionMatrix(predictionsTr, baseTreino$diabetes)
+resultadoTr <- caret::confusionMatrix(table(predictionsTr, baseTreino$diabetes))
 resultadoTr$table # exibe a matriz de confusão
 resultadoTr$overall[1] # exibe a acurácia
 
 # Resultados Teste
-resultadoTst <- caret::confusionMatrix(predictionsTst, baseTeste$diabetes) # Teste
+resultadoTst <- caret::confusionMatrix(table(predictionsTst, baseTeste$diabetes))
 resultadoTst$table # exibe a matriz de confusão
 resultadoTst$overall[1] # exibe a acurácia
 
