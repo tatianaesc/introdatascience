@@ -199,11 +199,11 @@ print(fit)
 
 # Aplica o modelo nos dados de treino
 probabilitiesTr <- predict(fit, baseTreino[,1:8], type='response') 
-predictionsTr <- ifelse(probabilitiesTr 0.5,'pos','neg')
+predictionsTr <- ifelse(probabilitiesTr > 0.5,'pos','neg')
 
 # Aplica o modelo nos dados de teste
 probabilitiesTst <- predict(fit, baseTeste[,1:8], type='response') 
-predictionsTst <- ifelse(probabilitiesTst 0.5,'pos','neg')
+predictionsTst <- ifelse(probabilitiesTst > 0.5,'pos','neg')
 
 library("caret")
 
